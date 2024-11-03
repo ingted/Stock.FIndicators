@@ -1,3 +1,44 @@
+This a cloned and modified repo of DaveSkender/Stock.Indicators
+
+Changes are some util method and classes like
+
+
+[Serializable]
+public class TAWrapper<TAHelper, TAResult>
+        where TAHelper : new()
+    {
+        public TAWrapper(TAHelper helper, List<TAResult> results)
+        {
+            this.results = results;
+            this.helper = helper;
+        }
+
+        public TAWrapper()
+        {
+            this.results = new List<TAResult>();
+            this.helper = new TAHelper();
+        }
+
+        public TAHelper helper;
+        public List<TAResult> results;
+
+}
+// SIMPLE MOVING AVERAGE (SERIES)
+
+[Serializable]
+public class SmaHelper<T>
+{
+
+    //public SmaHelper? prevHelper = null;
+    public double curSum = 0;
+    public Queue<T> curSumWindow = new Queue<T>();
+    public T lastDequeued;
+    public double curSumWithoutPrevious = 0;
+    public DateTime? curLastDT = null;
+    public int curResultIdx = 0;
+}
+
+
 [![image](https://raw.githubusercontent.com/DaveSkender/Stock.Indicators/main/docs/assets/social-banner.png)](https://dotnet.StockIndicators.dev/)
 
 [![GitHub Stars](https://img.shields.io/github/stars/DaveSkender/Stock.Indicators?logo=github&label=Stars)](https://github.com/DaveSkender/Stock.Indicators)
