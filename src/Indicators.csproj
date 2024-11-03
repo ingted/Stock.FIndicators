@@ -1,0 +1,118 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net9.0</TargetFrameworks>
+
+    <Authors>ingted</Authors>
+    <Product>Stock Indicators for .NET</Product>
+    <Copyright>@2024 ingted</Copyright>
+    <Description>Stock Indicators for .NET.  Transform financial market price quotes into technical analysis indicators such as MACD, Stochastic RSI, Average True Range, Parabolic SAR, etc.  Nothing more.</Description>
+
+    <RepositoryUrl>https://github.com/ingted/Stock.Indicators</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+    <AssemblyName>Skender.Stock.Indicators</AssemblyName>
+    <RootNamespace>Skender.Stock.Indicators</RootNamespace>
+    <LangVersion>12.0</LangVersion>
+    <NeutralLanguage>en-US</NeutralLanguage>
+
+    <EnablePackageValidation>false</EnablePackageValidation>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)nupkgs</PackageOutputPath>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://dotnet.stockindicators.dev</PackageProjectUrl>
+    <PackageId>Skender.Stock.Indicators</PackageId>
+    <PackageTags>
+       Indicators;Stock;Market;Technical;Analysis;Algorithmic;Trading;Trade;Trend;Momentum;Finance;Algorithm;Algo;
+       AlgoTrading;Financial;Strategy;Chart;Charting;Oscillator;Overlay;Equity;Bitcoin;Crypto;Cryptocurrency;Forex;
+       Quantitative;Historical;Quotes;Accumulation;Distribution;ADL;Aroon;True;Range;ATR;Bollinger;Bands;Commodity;
+       CCI;Chandelier;Exit;Chaikin;Money;Flow;CMF;MFI;Kaufman;Adaptive;Simple;Weighted;Exponential;Moving;Average;
+       Convergence;Divergence;MACD;SMA;EMA;DEMA;TEMA;TRIX;Smoothed;Elder-ray;Bull;Bear;Power;Force;Hurst;Exponent;
+       Relative;Strength;Index;RSI;ConnorsRSI;Stochastic;Directional;Movement;ADX;Donchian;Keltner;Channel;
+       Heikin-Ashi;Hilbert;Transform;Instantaneous;Trendline;Hull;HMA;Ichimoku;Cloud;On-balance;Volume;OBV;
+       Price;PMO;PRS;Parabolic;SAR;Stop;Reverse;PSAR;Pivot;Points;Rate;Change;ROC;Linear;Regression;R-Squared;Renko;
+       Schaff;Cycle;Slope;Standard;Deviation;Beta;Convexity;Correlation;SuperTrend;Ulcer;Ultimate;Vortex;Williams;%R;
+       Alligator;Gator;Fractal;Chaos;Choppiness;Endpoint;WMA;ZigZag;.NET;C#;Library;Package;
+    </PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>https://github.com/DaveSkender/Stock.Indicators/releases</PackageReleaseNotes>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageLicenseFile></PackageLicenseFile>
+    <PackageIcon>icon.png</PackageIcon>
+
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <ImplicitUsings>enable</ImplicitUsings>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <Nullable>enable</Nullable>
+
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <SignAssembly>True</SignAssembly>
+    <OutputPath>./bin</OutputPath>
+    <IsWindows Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))' == 'true'">true</IsWindows>
+    <IsOSX Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">true</IsOSX>
+    <IsLinux Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">true</IsLinux>
+    <Version>1.0.4</Version>
+
+  </PropertyGroup>
+  <!--<PropertyGroup>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <Version>1.0.0</Version>
+  </PropertyGroup>-->
+  <PropertyGroup Condition="'$(IsWindows)'=='true'">
+    <PackageId>FAkka.$(AssemblyName)</PackageId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsLinux)'=='true'">
+    <PackageId>FAkka.$(AssemblyName).Linux</PackageId>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\NOTICE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+  </ItemGroup>
+  <Target Name="PostPackNugetDeployWindows" AfterTargets="Pack" Condition="'$(IsWindows)'=='true' AND '$(Configuration)' == 'Release'">
+    <Exec Command="powershell -c &quot;write-host '====== Start Post-Build Event ======'&quot;&#xD;&#xA;powershell .\PostBuildEvent.ps1 FAkka.$(AssemblyName)" />
+  </Target>
+
+  <Target Name="PostPackNugetDeployLinux" AfterTargets="Pack" Condition="'$(IsLinux)'=='true' AND '$(Configuration)' == 'Release'">
+    <Exec Command="powershell -c &quot;write-host '====== Start Post-Build Event ======'&quot;&#xD;&#xA;powershell ./PostBuildEvent.Linux.ps1 FAkka.$(AssemblyName).Linux" />
+  </Target>
+
+  <PropertyGroup Condition="'$(IsWindows)'=='true'">
+    <DefineConstants>Windows</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(IsOSX)'=='true'">
+    <DefineConstants>OSX</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(IsLinux)'=='true'">
+    <DefineConstants>Linux</DefineConstants>
+  </PropertyGroup>
+
+</Project>
