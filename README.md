@@ -1,6 +1,6 @@
 This a cloned and modified repo of DaveSkender/Stock.Indicators
 
-Changes are some util method and classes like the code below and BETTER incremental calculation for ADX/DI/MACD/SNA, yes, BETTER!!
+Changes are some util method and classes like the code below and BETTER incremental calculation for ADX/DI/MACD/SMA, yes, BETTER!!
 
 
 [Serializable]
